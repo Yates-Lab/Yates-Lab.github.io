@@ -129,7 +129,7 @@
         © Copyright 2025 Yates Lab. Theme: <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a>. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
       </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@%7B%7Bversion%7D%7D/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@%7B%7Bversion%7D%7D/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@%7B%7Bversion%7D%7D/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
@@ -154,5 +154,209 @@
     <script src="../assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script>
     <script src="../assets/js/search-data.js"></script>
     <script src="../assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+    
+    <!-- Fix for hamburger menu functionality -->
+    <style>
+      /* Mobile navbar styling with higher specificity */
+      @media (max-width: 767.98px) {
+        .navbar .navbar-collapse {
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          background-color: #ffffff !important;
+          border-top: 1px solid #e0e0e0 !important;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+          z-index: 1000 !important;
+          max-height: none !important;
+          overflow: visible !important;
+        }
+        
+        .navbar .navbar-nav {
+          padding: 1rem 0 !important;
+          margin: 0 !important;
+        }
+        
+        .navbar .navbar-nav .nav-item {
+          padding: 0.5rem 1rem !important;
+          border-bottom: 1px solid #e0e0e0 !important;
+          display: block !important;
+        }
+        
+        .navbar .navbar-nav .nav-item:last-child {
+          border-bottom: none !important;
+        }
+        
+        .navbar .navbar-nav .nav-link {
+          display: block !important;
+          padding: 0.5rem 1rem !important;
+        }
+      }
+      
+      /* Force show when has show class */
+      .navbar-collapse.show {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      
+      /* Additional debugging and override styles */
+      .navbar-collapse.show {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 9999 !important;
+      }
+      
+      /* Ensure the navbar is visible on mobile */
+      @media (max-width: 767.98px) {
+        .navbar-collapse.show {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          height: auto !important;
+          overflow: visible !important;
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          background-color: #fff !important;
+          border: 2px solid red !important;
+          z-index: 9999 !important;
+        }
+        
+        /* Override Bootstrap's default behavior more aggressively */
+        .navbar-expand-sm .navbar-collapse {
+          display: none !important;
+        }
+        
+        .navbar-expand-sm .navbar-collapse.show {
+          display: block !important;
+        }
+        
+        /* Force the navbar to be visible when it has the show class */
+        .navbar-collapse.show,
+        .navbar-expand-sm .navbar-collapse.show {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          height: auto !important;
+          overflow: visible !important;
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          background-color: #fff !important;
+          border: 2px solid red !important;
+          z-index: 9999 !important;
+          max-height: none !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        
+        /* Ensure the navbar toggler is visible */
+        .navbar-expand-sm .navbar-toggler {
+          display: block !important;
+        }
+      }
+      
+      /* Ensure the navbar toggler is always visible on mobile */
+      .navbar-toggler {
+        display: none;
+      }
+      
+      @media (max-width: 767.98px) {
+        .navbar-toggler {
+          display: block !important;
+        }
+      }
+    </style>
+    
+    <script>
+      $(document).ready(function() {
+        console.log('Hamburger menu fix loaded');
+        console.log('jQuery version:', $.fn.jquery);
+        
+        // Debug: Log initial state
+        console.log('Initial navbar state:');
+        console.log('Navbar toggler:', $('.navbar-toggler'));
+        console.log('Navbar collapse:', $('.navbar-collapse'));
+        console.log('Navbar toggler data-target:', $('.navbar-toggler').data('target'));
+        
+        // Additional protection against Bootstrap interference
+        $('.navbar-toggler').off('click'); // Remove any existing click handlers
+        $('.navbar-collapse').off('click'); // Remove any existing click handlers
+        
+        // Re-attach our handler
+        $('.navbar-toggler').on('click', function(e) {
+          console.log('Hamburger button clicked!');
+          e.preventDefault();
+          e.stopPropagation(); // Prevent event bubbling
+          
+          var target = $(this).data('target');
+          var $target = $(target);
+          
+          console.log('Target:', target);
+          console.log('Target element:', $target);
+          console.log('Target has show class:', $target.hasClass('show'));
+          
+          if ($target.data('menu-open') === true) {
+            $target.removeClass('show');
+            $target.data('menu-open', false);
+            $target.css({
+              'display': 'none',
+              'visibility': 'hidden',
+              'opacity': '0'
+            });
+            console.log('Menu closed - hid element');
+          } else {
+            $target.addClass('show');
+            $target.data('menu-open', true);
+            $target.css({
+              'display': 'block',
+              'visibility': 'visible',
+              'opacity': '1',
+              'position': 'absolute',
+              'top': '100%',
+              'left': '0',
+              'right': '0',
+              'background-color': '#fff',
+              'border': '2px solid red',
+              'z-index': '9999',
+              'width': '100%',
+              'min-height': '200px',
+              'height': 'auto',
+              'overflow': 'visible'
+            });
+            console.log('Menu opened - made element visible with inline styles');
+            
+            // Check the state immediately
+            console.log('Menu open state:', $target.data('menu-open'));
+            console.log('Target computed display:', $target.css('display'));
+            console.log('Target computed visibility:', $target.css('visibility'));
+          }
+          
+          $(this).toggleClass('collapsed');
+          console.log('Toggled collapsed class');
+        });
+        
+        $(document).on('click', function(e) {
+          if (!$(e.target).closest('.navbar').length) {
+            $('.navbar-collapse').removeClass('show');
+            $('.navbar-toggler').addClass('collapsed');
+          }
+        });
+        
+        $('.navbar-nav .nav-link').on('click', function() {
+          $('.navbar-collapse').removeClass('show');
+          $('.navbar-toggler').addClass('collapsed');
+        });
+      });
+    </script>
   </body>
   </html>
