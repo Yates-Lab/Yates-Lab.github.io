@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Fixation browser · Gamma during natural viewing · Yates Lab</title>
+<script src="../assets/plotly.min.js"></script><script src="../assets/data.js"></script>
+<style>
+:root{--ink:#172c39;--muted:#526876;--teal:#007f8b;--blue:#3160b1;--gold:#b16713;--purple:#7b4caf;--border:#d6e1e6}
+*{box-sizing:border-box}body{margin:0;background:#eff3f5;color:var(--ink);font:15px/1.45 system-ui,sans-serif}header{background:#142c3b;color:white;padding:18px 28px}header h1{font-size:25px;margin:0 0 4px}header p{margin:0;color:#c6d7df}main{max-width:1520px;margin:auto;padding:18px 24px 50px}.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.controls label{display:flex;flex-direction:column;font-size:12px;font-weight:650;color:var(--muted);gap:4px}select,button,input{font:inherit}select,button,input[type=number]{border:1px solid #b6c9d3;border-radius:6px;background:white;padding:8px 10px;color:var(--ink)}button{cursor:pointer}button:hover{border-color:var(--teal);background:#e9f6f5}button.primary{background:var(--teal);color:white;border-color:var(--teal)}button:disabled{opacity:.5;cursor:wait}.tabs{display:flex;gap:7px;margin:16px 0}.tabs button.active{background:#183f52;color:white}.card{background:white;border:1px solid var(--border);border-radius:9px;padding:16px;margin:14px 0;box-shadow:0 2px 5px #183f5206}h2{font-size:20px;margin:0 0 6px}h3{font-size:16px;margin:0 0 5px}.small,.caption{color:var(--muted);font-size:13px}.caption{margin:8px 0 0}.status{margin:12px 0;font-size:14px;min-height:22px}.status.error{color:#a22b25}.image-grid{display:grid;grid-template-columns:1.65fr 1fr 1fr;gap:20px;align-items:start}.scene-wrap{position:relative;background:#ddd;aspect-ratio:16/9;max-height:300px;margin:auto}.scene-wrap canvas{width:100%;height:100%;object-fit:contain}.patch-wrap{display:flex;justify-content:center;background:#f0f3f4;border:1px solid #e1e7ea;aspect-ratio:1;max-width:235px;margin:auto}.patch-wrap canvas,.patch-wrap img{height:100%;width:100%;object-fit:contain;image-rendering:pixelated}.cursor-controls{display:flex;gap:12px;align-items:center;margin-top:16px}.cursor-controls input{flex:1}#cursor-time{min-width:165px;font-variant-numeric:tabular-nums}.pill{display:inline-block;background:#e7f1f4;border-radius:20px;padding:3px 10px;font-size:12px;margin-left:8px}.plot{width:100%}.note{padding:10px 14px;border-left:3px solid #70a7b4;background:#f1f7f8;font-size:13px;margin:12px 0}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.summary-grid>.card{min-width:0}#summary-view{display:none}.progress{height:6px;background:#dce8ec;margin-top:10px;border-radius:5px;overflow:hidden}.progress>div{height:100%;background:var(--teal);width:0;transition:width .4s}.spacer{flex:1}.legend{display:flex;gap:20px;font-size:13px;color:var(--muted);flex-wrap:wrap}.key{display:inline-block;width:20px;height:3px;vertical-align:middle;margin-right:5px}.toolbar{position:sticky;top:0;z-index:20;background:#eff3f5;padding:8px 0 12px;border-bottom:1px solid #d9e3e8}.hidden{display:none!important}details{font-size:13px;color:var(--muted)}summary{cursor:pointer;font-weight:600}a{color:var(--teal)}@media(max-width:900px){main{padding:12px}.image-grid{grid-template-columns:1.4fr 1fr}.image-grid>div:last-child{display:none}.summary-grid{grid-template-columns:1fr}header{padding:14px}.toolbar{position:static}}
+.workspace{display:grid;grid-template-columns:350px minmax(0,1fr);gap:16px;align-items:start}.workspace>.card{min-width:0}.workspace>.card:first-child{position:sticky;top:90px}.workspace .image-grid{grid-template-columns:1fr 1fr;gap:12px}.workspace .image-grid>div:first-child{grid-column:1 / -1}.workspace .image-grid h3{font-size:13px}.workspace .caption{font-size:12px}.workspace .cursor-controls{flex-wrap:wrap;gap:7px}.workspace #cursor-time{width:100%}.workspace h2{font-size:18px}.workspace .patch-wrap{width:100%}@media(max-width:1000px){.workspace{grid-template-columns:1fr}.workspace>.card:first-child{position:static}.workspace .image-grid{grid-template-columns:1.6fr 1fr 1fr}.workspace .image-grid>div:first-child{grid-column:auto}}
+#time-frequency{scroll-margin-top:100px}#band-envelopes{scroll-margin-top:145px}
+</style><meta content="noindex, nofollow" name="robots"/><link href="../assets/site.css" rel="stylesheet"/></head><body><nav aria-label="Research note" class="lab-nav"><a class="lab-brand" href="../../../">Yates Lab <span>Active Vision &amp; Neural Computation</span></a><div><a href="../">Report</a><a aria-current="page" href="./">Fixation browser</a><a href="../explore/">Across sessions</a><a href="../report.pdf">PDF</a></div></nav>
+<header><h1>Look through the fixations</h1><p>Saved examples from Allen and Logan. Image, gaze, spikes and field share the same acquisition clock.</p></header>
+<main><div class="note public-note"><b>12 illustrative fixations, two sessions.</b> These span six duration targets and were selected without using the neural response. Arrows follow increasing duration through this saved sample; the examples do not measure prevalence. Two saved contacts per session and three references are available; the <a href="../explore/">session explorer</a> covers all 30 sessions. The plots use the same calculations as the recording-machine browser.</div>
+<div class="toolbar"><div class="controls">
+<label>Session<select id="session"></select></label>
+<label>LFP reference<select id="reference"><option value="shank_car">Subtract shank average · CAR</option><option value="recorded">Recorded voltage</option><option value="cross_shank">Across-shank difference · 200 µm</option></select></label>
+<label>Unit<select id="unit"></select></label><label>LFP contact<select id="contact"></select></label>
+<span class="spacer"></span>
+</div></div>
+<div class="status" id="status">Loading sessions…</div>
+<section id="browse-view">
+<div class="controls"><button id="prev">← Previous</button><button id="next">Next →</button>
+<label>Image / trial<select id="trial"></select></label><label>Fixation within trial<select id="fixation"></select></label>
+<label>Surrounding time<select disabled="disabled" id="context"><option selected="selected" value="200">200 ms each side</option></select></label>
+<label>Eye trace scale<select id="eye-scale"><option value="fixation">See fixation detail</option><option value="context">Fit the surrounding saccades</option></select></label>
+<span class="small">← / → keys step through fixations</span><a href="#time-frequency">Spectrograms &amp; power envelopes ↓</a></div>
+<div class="workspace">
+<div class="card"><h2 id="clip-title">Image and RF patch</h2><p class="caption" id="clip-description"></p>
+<div class="controls" style="margin-top:10px"><button onclick="$('prev').click()">← Previous fixation</button><button onclick="$('next').click()">Next →</button></div>
+<div class="image-grid" style="margin-top:14px">
+<div><h3>What was on the screen?</h3><div class="scene-wrap"><canvas height="720" id="scene" width="1280"></canvas></div><p class="caption">Teal path: gaze in this fixation. Gold box: the saved RF crop at the cursor.</p></div>
+<div><h3>Image in the mapped RF region</h3><div class="patch-wrap"><canvas height="51" id="patch" width="51"></canvas></div><p class="caption" id="patch-description"></p></div>
+<div><h3 id="rf-title">Selected unit’s RF map</h3><div class="patch-wrap"><img alt="Measured receptive-field map" id="rf-image"/></div><p class="caption" id="rf-description">Saved spike-triggered image, in the same crop coordinates. Red and blue are opposite luminance signs.</p></div>
+</div>
+<div class="cursor-controls"><button id="play">▶ Play slowly</button><input id="cursor" max="100" min="0" step="1" type="range" value="50"/><span class="small" id="cursor-time"></span></div>
+<p class="caption">Move the slider or hover over a trace to move the RF patch. Crops use the existing gaze correction and pixel sampling; the eye traces retain native tracker timing.</p>
+</div>
+<div class="card"><h2>What happened during this fixation?</h2>
+<div class="legend"><span><i class="key" style="background:#007f8b"></i>Horizontal eye</span><span><i class="key" style="background:#b16713"></i>Vertical eye</span><span><i class="key" style="background:#83939b"></i>Full LFP</span><span><i class="key" style="background:#3160b1"></i>LFP above 30 Hz</span></div>
+<div id="time-frequency" style="margin:12px 0"><p class="caption">Eye traces, LFP, spikes, spectra and envelopes share the same horizontal axis. Drag to zoom all rows together; double-click to reset.</p><div class="controls" style="margin-top:14px">
+<label>Spectral window<select id="tf-window"><option value="64">64 ms · finer timing</option><option selected="" value="128">128 ms</option><option value="256">256 ms · finer frequencies</option></select></label>
+<label>Tapers<select id="tf-method"><option value="dpss2">Multitaper · 2 DPSS</option><option value="dpss4">Multitaper · 4 DPSS</option></select></label>
+<label>Map colors<select id="tf-scale"><option value="absolute">Absolute power · dB</option><option value="relative">Change from local frequency median · dB</option></select></label>
+<label>Envelope display<select id="envelope-scale"><option value="rms">RMS amplitude · physical units</option><option value="power">Power · physical units</option></select></label>
+<span class="small" id="tf-resolution"></span></div>
+</div>
+<div class="note hidden" id="contact-note" role="status"></div>
+<div class="controls" style="margin:12px 0">
+<label>Spike colors<select id="spike-colors"><option value="phase">LFP phase · HSV</option><option value="unit">Selected unit only</option></select></label>
+<label>Phase band<select id="phase-band"><option value="40-70">40–70 Hz</option><option value="65-95">65–95 Hz</option><option selected="" value="70-100">70–100 Hz</option><option value="100-150">100–150 Hz</option></select></label>
+<label>Phase reference<select disabled="disabled" id="phase-source"><option value="selected">Selected LFP contact · common</option></select></label>
+<label>Minimum band envelope<select id="phase-floor"><option value="0">All supported phases</option><option value="2">2 µV</option><option value="5">5 µV</option><option value="10">10 µV</option></select></label></div>
+<div id="phase-legend" style="max-width:520px;font-size:12px;margin:10px 0"><b>Phase around one LFP cycle</b><div style="height:9px;margin:6px 0;background:linear-gradient(to right,#d90000,#d9d900,#00d900,#00d9d9,#0000d9,#d900d9,#d90000)"></div><div style="display:flex;justify-content:space-between"><span>0° peak</span><span>90° falling</span><span>180° trough</span><span>270° rising</span><span>360° peak</span></div></div>
+<p class="caption" id="phase-readout"></p>
+<p class="small narrow-note">On a narrow screen, scroll the plot sideways to keep the traces and labels readable.</p><div aria-label="Synchronized fixation plots; scroll sideways on a narrow screen" class="plot-scroll" tabindex="0"><div class="plot" id="traces" style="height:1220px"></div></div>
+<p class="caption" id="trace-note"></p><details style="margin-top:12px"><summary>How to read the spectra and envelopes</summary>
+<p class="caption" id="tf-note"></p><p class="caption" id="envelope-note"></p>
+<p>Spike phase is the angle of the analytic signal after a zero-phase 4th-order Butterworth bandpass in the selected band. It is sampled at each original spike timestamp by interpolating complex voltage, not wrapped angles. Processing uses continuous context, with at least 250 ms withheld on either side of rejected samples, acquisition gaps and recording edges. The phase guide is a filtered waveform; filters can make a transient look cyclic. The envelope cutoff is a display choice in µV, not a calibrated detection threshold. A phase exists in filtered noise too. The spectrograms retain the separate taper/window settings above. These phases use unnotched LFP and no response-delay shift.</p>
+<p>All spike colors use the selected LFP contact. Same-contact spike contamination and shared artifacts can contribute; a common color is not evidence for phase locking. <a href="https://github.com/mullerlab/generalized-phase">Muller/Reynolds generalized phase</a> addresses broader waveforms and is not the estimator used here. This display uses bandpass/Hilbert phase, not a measure of encoded information.</p>
+<p>Time zero is saccade end. Dashed lines mark this fixation's boundaries, gray time is outside it. Green bars below the maps mark complete windows inside the fixation. Eye spectra add horizontal and vertical velocity powers. Maps and envelopes use full unnotched LFP, not the blue high-pass display trace. Windows can include nearby saccades; missing samples leave gaps. Envelope axes retain separate eye and LFP units. No latency shift or coupling test is applied.</p></details><div class="note">White time is the selected fixation. Gray time is context outside it. Dashed boundaries mark saccade end and fixation end. The blue trace removes slow activity for viewing; it is unnotched and is not a gamma-burst detector.</div>
+</div>
+</div>
+</section>
+</main>
+<script src="../assets/fixation_browser_tf.js"></script>
+<script src="../assets/fixation_browser_phase.js"></script>
+<script src="../assets/fixations.js"></script></body></html>

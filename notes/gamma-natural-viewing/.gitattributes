@@ -1,0 +1,4 @@
+# Keep vendor code and frozen scientific arrays out of human code diffs.
+assets/plotly.min.js -diff linguist-vendored whitespace=-blank-at-eol
+data/** binary linguist-generated
+figures/** binary linguist-generated

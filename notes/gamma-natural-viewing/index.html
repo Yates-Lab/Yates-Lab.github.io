@@ -1,0 +1,230 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><meta name="description" content="A working research report on gamma during natural viewing, with synchronized fixation examples and comparisons across 30 marmoset V1 sessions."><title>Gamma during natural viewing · Yates Lab</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/report.css"></head><body><a class="skip" href="#report">Skip to report</a><nav class="lab-nav" aria-label="Research note"><a class="lab-brand" href="../../">Yates Lab <span>Active Vision &amp; Neural Computation</span></a><div><a href="./" aria-current="page">Report</a><a href="fixations/">Fixation browser</a><a href="explore/">Across sessions</a><a href="report.pdf">PDF</a></div></nav><div class="report-layout"><aside class="contents"><b>In this report</b><a href="#1-why-this-question-is-interesting">1. Why this question is interesting</a><a href="#2-what-our-recordings-look-like">2. What our recordings look like</a><a href="#3-preparing-the-field-without-defining-gamma-into-it">3. Preparing the field without defining gamma into it</a><a href="#4-image-onset-a-direct-comparison-with-brunet-and-colleagues">4. Image onset: a direct comparison with Brunet and colleagues</a><a href="#5-the-saccade-cycle-power-and-phase-are-different-measurements">5. The saccade cycle: power and phase are different measurements</a><a href="#6-what-this-first-comparison-establishes">6. What this first comparison establishes</a><a href="session_coverage.csv">Download coverage table</a><a href="depth_landmarks.csv">Download depth landmarks</a></aside><main id="report"><h1 id="gamma-during-natural-viewing-establishing-the-neural-signals">Gamma during natural viewing: establishing the neural signals</h1>
+<p class="edition"><strong>Part 1 · Working report for discussion · 28 September 2026</strong></p><div class="tools"><a href="fixations/"><strong>Browse individual fixations →</strong><span>Gaze, LFP, spikes and phase on one clock. Twelve saved examples from both animals.</span></a><a href="explore/"><strong>Compare the 30 sessions →</strong><span>Saccade-triggered power and phase, image spectra, and reference choices.</span></a></div>
+<p>This report starts with the biological motivation, then asks whether our simultaneous eye, spike, and field recordings contain the neural signatures reported in the literature. It presents the completed 30-session comparisons and follows one recording from each animal through the same analyses. Later installments can address individual oscillatory bouts, eye–neural coupling, and stimulus information.</p>
+<h2 id="1-why-this-question-is-interesting">1. Why this question is interesting</h2>
+<p>The starting observation is Figure 5 of Ahissar and Arieli’s <em>Figuring Space by Time</em> (2001): the frequency ranges of small fixational eye movements and visually driven cortical oscillations overlap.</p>
+<figure id="figure-1"><img alt="Ahissar and Arieli Figure 5: human eye spectra and monkey/cat cortical spectra." aria-label="Enlarge: Ahissar and Arieli Figure 5: human eye spectra and monkey/cat cortical spectra." decoding="async" height="723" loading="lazy" role="button" src="figures/ahissar_figure5.png" tabindex="0" width="912"/><figcaption><strong>Figure 1. The observation that motivates the project.</strong> Panels from Ahissar and Arieli (2001), Figure 5, extracted from the supplied paper. A: horizontal eye-velocity spectra from two humans. B: visually driven monkey V1 LFP spectra. C: human eye-position and artificial-eye spectra. D: spontaneous and driven membrane-potential spectra from a cat V1 cell. These are different experiments, species, and recording conditions—not simultaneous measurements demonstrating coupling. Their resemblance motivates a test. <a href="https://doi.org/10.1016/S0896-6273(01)00466-4">Source</a>.</figcaption></figure>
+
+<p>A stationary photograph does not produce stationary input to the retina. During fixation, drift and tremor move the image across photoreceptors. An image edge or fine texture therefore becomes a time-varying input. The hypothesis is that the nervous system could use some of this timing to represent spatial detail. Similar eye and cortical frequencies are suggestive, but they do not establish that the two signals interact or that their interaction carries useful visual information.</p>
+<p>The relationship between image structure and cortical gamma makes this question more concrete. Uran, Peter and colleagues, including Pascal Fries, found that natural images with more predictable local structure produced stronger V1 gamma synchronization. The distinction is important: gamma was especially associated with the contextual predictability of <strong>low-level image structure</strong>, while firing rates were more closely related to predictability of <strong>higher-level features</strong>. Predictability is an appealing organizing idea, but it should not be paraphrased as gamma encoding semantic content. <a href="https://doi.org/10.1016/j.neuron.2022.01.002">Uran et al., 2022</a>.</p>
+<figure id="figure-2"><img alt="Uran et al. Figure 2: image predictability, LFP spectra, and firing rates." aria-label="Enlarge: Uran et al. Figure 2: image predictability, LFP spectra, and firing rates." decoding="async" height="738" loading="lazy" role="button" src="figures/uran_figure2.png" tabindex="0" width="1299"/><figcaption><strong>Figure 2. Gamma depends on what the animal sees.</strong> Uran et al. (2022), Figure 2, panels extracted from the supplied paper. The upper-left comparison shows different time–frequency patterns for weakly and strongly predictable image structure. The spectral curves and lower panels associate stronger structural predictability with stronger gamma, with a different relationship for firing rates. The paper’s 1/f-corrected spectra are different from the percentage-change spectra used below. We have not yet repeated its image-inpainting/predictability analysis in our animals. <a href="https://doi.org/10.1016/j.neuron.2022.01.002">Source</a>.</figcaption></figure>
+
+<p>Together, these papers motivate three successive questions. First, what recurring neural signals are actually present in our V1 recordings? Second, do those signals relate to the retinal changes produced by gaze? Third, does their relationship reveal image information beyond what we can read from spike counts alone? This installment establishes the first comparison. Gamma, firing rates, and temporal codes need not be mutually exclusive explanations.</p>
+<h2 id="2-what-our-recordings-look-like">2. What our recordings look like</h2>
+<p>We have simultaneous high-resolution eye tracking, sorted spikes, and laminar field recordings during natural-image viewing in two marmosets, Allen and Logan. The analyses below use the <strong>30 sessions already designated as good</strong>: 14 from Allen and 16 from Logan. The probe has two shanks, each with 32 contacts at 35 µm depth spacing; the shanks are separated laterally by 200 µm. Receptive fields remain on the displayed image, as confirmed by the experimenter.</p>
+<p>The eye tracker is sampled at its native rate, typically about 540 Hz, with session-specific differences. LFP is reconstructed at 1 kHz from raw recordings. Spikes retain their acquisition timestamps. A common clock lets us inspect all three without shifting one signal until it visually matches another. This chapter applies <strong>no eye-to-neural response-delay shift</strong>.</p>
+<p>The two running examples are <strong>Allen_2022-04-13</strong> and <strong>Logan_2019-12-20</strong>. These are familiar sessions chosen for exposition, not statistically representative days. Within each, the single-trial example follows the previously fixed rule: the first quality-eligible trial at the median available contact of the superficial group on shank 1. No gamma threshold selected those trials. The later session-average panels use all eligible events in each example session.</p>
+<figure id="figure-3"><img alt="Two example recordings showing gaze, voltage, spikes, and a depth map." aria-label="Enlarge: Two example recordings showing gaze, voltage, spikes, and a depth map." decoding="async" height="1635" loading="lazy" role="button" src="figures/recording_overview.png" tabindex="0" width="1705"/><figcaption><strong>Figure 3. The actual measurements, on one clock.</strong> Columns show Allen April 13, trial 164, contact 30, and Logan December 20, trial 39, contact 13. Rows show centered horizontal/vertical eye position, full LFP with recorded and shank common-average references, good-unit spikes, and the shank-1 CAR depth map. Green is image onset; red marks detected peak saccade velocity. Raster units are ordered within shank; blue and orange ticks distinguish shanks 1 and 2. The depth-map dashed line marks the current input landmark. Gray gaps are missing/rejected samples or contacts. Depth-map color limits are fitted separately to each animal and printed in µV; equal colors therefore need not mean equal voltage across columns. No gamma bandpass or mains notch is used. Channel numbers follow the viewer’s zero-based identifiers.</figcaption></figure>
+
+<p>Large slow voltage changes, rapid ripples, and brief deflections can coexist. The field is also shared to different degrees across contacts. Consequently, a visible ripple, a spike volley, and an increase in spectral power should not automatically receive the same interpretation. The examples make those distinctions inspectable before we average anything.</p>
+<h2 id="3-preparing-the-field-without-defining-gamma-into-it">3. Preparing the field without defining gamma into it</h2>
+<p>The primary signal is calibrated broadband LFP derived from the original recording. We use a 250 Hz low-pass followed by anti-alias resampling to 1 kHz, with two seconds of context. Filtering does not cross acquisition gaps. We do not apply the fixation browser’s 30 Hz display high-pass to these analyses, and the primary figures are <strong>unnotched</strong>.</p>
+<div aria-label="Scrollable data table" class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Purpose</th>
+<th>Consequence for interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recorded voltage calibration and acquisition-clock conversion</td>
+<td>Put contacts in µV and align them with behavior</td>
+<td>Timing and amplitude remain physical measurements.</td>
+</tr>
+<tr>
+<td>Context-aware filtering and anti-alias resampling</td>
+<td>Retain the LFP range without chunk-edge artifacts</td>
+<td>The earlier short-padding export had boundary errors; the present primary input is reconstructed from raw data.</td>
+</tr>
+<tr>
+<td>Fixed contact-quality and local sample masks</td>
+<td>Exclude dead, clipped, or invalid data</td>
+<td>Rejected samples remain gaps, not zero voltage. A clip’s surroundings must not redefine its CAR contacts.</td>
+</tr>
+<tr>
+<td>Separate shanks and depth groups</td>
+<td>Preserve spatial differences</td>
+<td>Calculate power or phase consistency at each contact before averaging; do not average signed voltages across layers.</td>
+</tr>
+<tr>
+<td>Recorded, shank CAR, and lateral-difference comparisons</td>
+<td>Examine the influence of shared voltage</td>
+<td>Spatial subtraction can remove shared neural signal as well as interference.</td>
+</tr>
+<tr>
+<td>Notch/line-projection sensitivity analyses</td>
+<td>Check dependence on 60/120 Hz features</td>
+<td>A line-like frequency is not identified as noise solely because subtraction removes it.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Known-packet and transfer-function checks show that the software preprocessing retains about <strong>98% of 80 Hz power</strong>, about <strong>95% at 100 Hz</strong>, and about <strong>62% at 180 Hz</strong>. Thus, the software low-pass cannot by itself erase a large 80 Hz rhythm. Acquisition hardware has not been independently calibrated, and the upper part of the time–frequency maps needs more caution. In the saccade figures, the region above 180 Hz is shaded for that reason.</p>
+<h3 id="what-superficial-input-and-deep-mean-here">What “superficial,” “input,” and “deep” mean here</h3>
+<p>These are <strong>provisional functional depth groups</strong>, not histological assignments. The existing landmark combines flash-CSD energy and flash high-frequency responses; Allen June 1 uses a manually specified interval midpoint. Contacts within ±140 µm of the center form the near-input group. Superficial/deep directions and anatomical exclusion bounds follow the stored probe map.</p>
+<p>An independent check identifies a negative flash-CSD sink at 30–60 ms and requires it to be away from the CSD edge and reproducible within 70 µm across trial halves. <strong>44 of 60 shanks qualify; eight of those differ from the existing landmark by more than 140 µm.</strong> Sensitivity analyses compare the alternative landmarks on the same qualifying shanks. The main figures below retain the existing grouping, so their coverage remains the full cohort.</p>
+<div aria-label="Scrollable data table" class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Example session</th>
+<th style="text-align: right;">Shank</th>
+<th style="text-align: right;">Current landmark</th>
+<th style="text-align: right;">Independent early sink</th>
+<th>How much confidence to place in the grouping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allen April 13</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">805 µm</td>
+<td style="text-align: right;">805 µm</td>
+<td>Agreement between the two definitions.</td>
+</tr>
+<tr>
+<td>Allen April 13</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">420 µm</td>
+<td style="text-align: right;">665 µm</td>
+<td>Reproducible alternative, but a substantial 245 µm discrepancy.</td>
+</tr>
+<tr>
+<td>Logan December 20</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">175 µm</td>
+<td style="text-align: right;">Not qualified</td>
+<td>Existing grouping remains uncertain; the nominal sink does not pass the independent criterion.</td>
+</tr>
+<tr>
+<td>Logan December 20</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">210 µm</td>
+<td style="text-align: right;">175 µm</td>
+<td>Qualified alternative within one 35 µm contact step.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Probe coordinates increase according to the acquisition geometry; they are not distances measured from a histologically identified cortical surface. The Logan example also has few retained deep contacts on one shank. Apparent layer differences should therefore be interpreted more cautiously than the presence of an event-related response itself.</p>
+<h2 id="4-image-onset-a-direct-comparison-with-brunet-and-colleagues">4. Image onset: a direct comparison with Brunet and colleagues</h2>
+<p>Brunet et al. (2015), also with Fries, provide the natural-viewing benchmark. They recorded surface ECoG in macaques and reported pronounced 50–80 Hz activity during image viewing, with a lower-frequency excursion after saccades. Their Figure 2 connects the actual voltage to its spectrogram and spectral change. That is the comparison we want, rather than a spectrum detached from the waveform that generated it. <a href="https://doi.org/10.1093/cercor/bht280">Brunet et al., 2015</a>.</p>
+<figure id="figure-4"><img alt="Supplied Brunet Figure 2 showing voltage, spectrogram, and spectral change." aria-label="Enlarge: Supplied Brunet Figure 2 showing voltage, spectrogram, and spectral change." decoding="async" height="1460" loading="lazy" role="button" src="figures/brunet_supplied.png" tabindex="0" width="1892"/><figcaption><strong>Figure 4. The published benchmark.</strong> Supplied Brunet et al. Figure 2. The green marker is image onset; red markers denote saccades. The figure shows a selected example with conspicuous repeated gamma cycles and a large spectral peak. Its effect size is not the expected value of an average over all contacts, depths, and sessions. <a href="https://doi.org/10.1093/cercor/bht280">Source</a>.</figcaption></figure>
+
+<h3 id="the-same-three-measurements-in-our-two-example-sessions">The same three measurements in our two example sessions</h3>
+<p>For each example below, the left panels show voltage and a <strong>four-cycle Hann time–frequency estimate</strong> from the same contact and trial. The right panel compares image and pre-image spectra. It uses eight DPSS tapers, 500 ms windows, and ±8 Hz smoothing. Three overlapping image windows start at 0, 100, and 200 ms; the baseline is the 500 ms before image onset. These starts are explicit implementation choices because the paper does not specify their exact placement.</p>
+<p>Power change is <code>100 × (image power / pre-image power − 1)</code>: +100% means twice the baseline power; zero means no change. A weak baseline can yield a large ratio. The spectrogram shows absolute power in dB, so its colors do not have that same interpretation. All three reference rows share one spectral color scale within an example, while voltage axes retain their own printed ranges.</p>
+<figure id="figure-5"><img alt="Allen predetermined example: three references, linked voltage, spectrogram, and spectral change." aria-label="Enlarge: Allen predetermined example: three references, linked voltage, spectrogram, and spectral change." decoding="async" height="1735" loading="lazy" role="button" src="figures/image_example_Allen_2022-04-13.png" tabindex="0" width="1720"/><figcaption><strong>Figure 5. Allen April 13, trial 164.</strong> The same contact and time interval are shown with recorded reference, shank CAR, and contact 30 minus lateral partner 62. Time zero is image onset. The persistent band near 60 Hz in the recorded-reference example is present before the image and is strongly altered by spatial subtraction. This observation establishes a shared component, not its electrical or biological origin. The predetermined trial does not resemble the paper’s clean, large, sustained 50–80 Hz example.</figcaption></figure>
+
+<figure id="figure-6"><img alt="Logan predetermined example: three references, linked voltage, spectrogram, and spectral change." aria-label="Enlarge: Logan predetermined example: three references, linked voltage, spectrogram, and spectral change." decoding="async" height="1735" loading="lazy" role="button" src="figures/image_example_Logan_2019-12-20.png" tabindex="0" width="1720"/><figcaption><strong>Figure 6. Logan December 20, trial 39.</strong> Contact 13 and lateral partner 45, selected by the same rule. Prominent deflections and changing frequency content accompany the viewing period. Spatial subtraction changes the waveform and spectral response substantially. This example contains faster fluctuations, but the figure alone does not distinguish a sustained narrow rhythm from transient contributions. The displayed trial is an illustration, not a prevalence estimate.</figcaption></figure>
+
+<h3 id="across-sessions">Across sessions</h3>
+<p>The population comparison uses the paper’s <strong>nonoverlapping 500 ms Hann windows after the first 300 ms of image viewing</strong>, with paired pre-image measurements. Image and baseline powers are averaged across paired trials before division at each contact; contact ratios are then averaged within depth group, followed by equal weighting of sessions within each animal. This uses 4,262 paired trials. Its denominator differs from the saccade analysis because eligibility requires different temporal support.</p>
+<figure id="figure-7"><img alt="Thirty-session image-versus-pre-image spectral changes, separated by animal, shank, and depth." aria-label="Enlarge: Thirty-session image-versus-pre-image spectral changes, separated by animal, shank, and depth." decoding="async" height="1663" loading="lazy" role="button" src="figures/image_population.png" tabindex="0" width="1846"/><figcaption><strong>Figure 7. A population response, with the variation between sessions visible.</strong> Unnotched shank CAR. Each faint curve is one session; the thick colored curve is the equal-session mean. The black dashed curve is the running example session for that animal. The pale vertical region marks 50–80 Hz. Shanks and depth groups remain separate; the plots do not average voltages across the probe. The session spectra include ongoing saccades and short fixations and do not select the most gamma-responsive third of sites. They reuse the earlier completed paired-baseline quality mask; the separate fixed-mask audit found little change to the broad population conclusion.</figcaption></figure>
+
+<p>Across the six shank/depth group means, 50–80 Hz power is <strong>30–49% above pre-image in Allen</strong> and <strong>19–26% above pre-image in Logan</strong>. Much of the increase spans a wider frequency range. This supports an image-related increase in field activity, including gamma-range frequencies. It does not yet reproduce the paper’s strong, sustained, narrow-band phenotype as a general feature of our recordings. Separately selected trials can show clearer recurring cycles; they must not replace the all-session summary or be used to estimate prevalence.</p>
+<h2 id="5-the-saccade-cycle-power-and-phase-are-different-measurements">5. The saccade cycle: power and phase are different measurements</h2>
+<p>Ito et al. (2013) provide a second benchmark during natural viewing. Their Figures 3 and 4 ask two complementary questions: does activity at a frequency become stronger after a saccade, and does the field return to a similar phase at that time on successive saccades? A strong oscillation can start at a different phase each time. High power therefore does not require high phase alignment. <a href="https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2013.00001/full">Ito et al., 2013</a>.</p>
+<figure id="figure-8"><div class="paper-pair">
+<img alt="Ito Figure 3, saccade-onset-aligned normalized power." aria-label="Enlarge: Ito Figure 3, saccade-onset-aligned normalized power." decoding="async" height="1580" loading="lazy" role="button" src="figures/ito3_supplied.png" tabindex="0" width="1532"/>
+<img alt="Ito Figure 4, saccade-onset-aligned phase consistency." aria-label="Enlarge: Ito Figure 4, saccade-onset-aligned phase consistency." decoding="async" height="1540" loading="lazy" role="button" src="figures/ito4_supplied.png" tabindex="0" width="1526"/>
+</div><figcaption><strong>Figure 8. The supplied Ito benchmarks.</strong> Left: normalized power. Right: inter-saccade phase consistency. Both use saccade onset as time zero and show −100 to +300 ms. These measurements describe the repeated saccade cycle; they are not measurements of locking to individual tremor cycles. <a href="https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2013.00001/full">Source</a>.</figcaption></figure>
+
+<h3 id="how-to-read-our-counterparts">How to read our counterparts</h3>
+<p>We use the paper’s approximately five-cycle Morlet construction and logarithmic frequency grid, retaining slow activity. For <strong>power</strong>, each contact/frequency is standardized using the mean and standard deviation over valid image-viewing time across trials, then averaged over saccades. Red means above that frequency’s usual power; blue means below it. This is a z-score, not a pre-image percentage change. A persistent 60 Hz component can consequently be inconspicuous in this display.</p>
+<p>For <strong>phase consistency</strong>, we measure how concentrated the phases are across saccades at each contact and frequency. Zero indicates little repeatable phase and one indicates perfect agreement. We then average contact-level measurements within depth groups and give sessions equal weight. We never average signed voltage or phase angles across layers. Sample-size bias remains relevant; an unbiased squared phase-consistency measure was retained as a sensitivity check.</p>
+<p>The main maps retain short fixations and surrounding saccades. Saccades follow the specified velocity/acceleration criteria; a separate sensitivity analysis requires ≥100 ms of stable fixation. Our eye positions are explicitly smoothed at 50 Hz for this event detector, unlike the paper’s search-coil acquisition. Continuous recording supplies wavelet context without crossing gaps. At 1 Hz, a five-cycle wavelet spans approximately five seconds: the slow-frequency rows cannot resolve a precise change confined to tens of milliseconds.</p>
+<div aria-label="Scrollable data table" class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Animal</th>
+<th style="text-align: right;">Sessions</th>
+<th style="text-align: right;">Usable image trials</th>
+<th style="text-align: right;">Saccades in the main maps</th>
+<th style="text-align: right;">Saccades passing the additional stable-fixation rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allen</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2,385</td>
+<td style="text-align: right;">73,756</td>
+<td style="text-align: right;">49,370</td>
+</tr>
+<tr>
+<td>Logan</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1,925</td>
+<td style="text-align: right;">62,041</td>
+<td style="text-align: right;">35,779</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">4,310</td>
+<td style="text-align: right;">135,797</td>
+<td style="text-align: right;">85,149</td>
+</tr>
+</tbody>
+</table></div>
+<p>These are event counts, not independent animal replicates. Overlapping windows and repeated image presentations are not independent observations. The cohort contains two animals.</p>
+<figure id="figure-9"><img alt="Allen cohort saccade-triggered power and phase, separated by shank and depth." aria-label="Enlarge: Allen cohort saccade-triggered power and phase, separated by shank and depth." decoding="async" height="1607" loading="lazy" role="button" src="figures/saccades_Allen.png" tabindex="0" width="1844"/><figcaption><strong>Figure 9. Allen: 14 sessions.</strong> Top two rows show power; bottom two show phase consistency. Each pair of rows separates the two shanks, with superficial, near-input, and deep groups across columns. The vertical white line is saccade onset. Green horizontal lines mark the inverse median inter-saccade interval. Gray shading above 180 Hz marks bandwidth caution, not a rejected-data region. Fixed scales allow comparison with Logan and the individual sessions: power −0.5 to +0.5 SD; phase consistency 0 to 0.5, with stronger values saturated. These colors do not represent significance tests.</figcaption></figure>
+
+<figure id="figure-10"><img alt="Logan cohort saccade-triggered power and phase, separated by shank and depth." aria-label="Enlarge: Logan cohort saccade-triggered power and phase, separated by shank and depth." decoding="async" height="1607" loading="lazy" role="button" src="figures/saccades_Logan.png" tabindex="0" width="1844"/><figcaption><strong>Figure 10. Logan: 16 sessions.</strong> The same estimator, normalization, arrangement, and color limits as Figure 9. Similar normalized power across depths need not mean identical voltage amplitudes. The phase panels establish repeatability relative to saccades; they do not establish that eye tremor sets cortical phase.</figcaption></figure>
+
+<p>Both animals show a brief <strong>20–40 Hz power increase after saccade onset</strong>, followed by a decrease. The group mean time courses peak around <strong>45–55 ms</strong>, earlier than the approximately 100 ms peak visible in the supplied Ito figure. Event detection, species, and recording geometry differ; their contributions to the timing difference have not been isolated.</p>
+<p>Slow phase is much more repeatable than gamma phase: over 50–150 ms, CAR group means have <strong>2–8 Hz phase consistency of 0.32–0.49</strong>, compared with <strong>0.016–0.021 at 50–90 Hz</strong>. These are ranges across group means, not confidence intervals. The slow-phase/fast-power distinction qualitatively matches the published pattern. The higher-frequency power near the post-saccadic response could include oscillations, spike-related activity, or sharp transients; the map alone does not separate them.</p>
+<h3 id="the-same-analysis-within-the-two-example-sessions">The same analysis within the two example sessions</h3>
+<figure id="figure-11"><img alt="Allen April 13 saccade-triggered power and phase." aria-label="Enlarge: Allen April 13 saccade-triggered power and phase." decoding="async" height="1607" loading="lazy" role="button" src="figures/saccades_Allen_2022-04-13.png" tabindex="0" width="1844"/><figcaption><strong>Figure 11. Allen April 13: 192 image trials and 5,974 saccades.</strong> Same axes, reference, groups, and color limits as the cohort maps. The image-onset trace in Figure 5 is one trial from this session; these maps average all eligible saccades. Shank 2’s current and independent depth landmarks disagree by 245 µm, so its nominal layer labels deserve particular caution.</figcaption></figure>
+
+<figure id="figure-12"><img alt="Logan December 20 saccade-triggered power and phase." aria-label="Enlarge: Logan December 20 saccade-triggered power and phase." decoding="async" height="1607" loading="lazy" role="button" src="figures/saccades_Logan_2019-12-20.png" tabindex="0" width="1844"/><figcaption><strong>Figure 12. Logan December 20: 86 image trials and 2,591 saccades.</strong> Same measurement and scales. Individual-session structure is retained rather than replaced by the animal mean. The shank-1 input landmark lacks independent support, and some deep groups contain few contacts. These limitations affect anatomical interpretation, not the definition of time zero or normalization.</figcaption></figure>
+
+<p>The main power and slow-phase patterns also remain in the completed checks using the stricter fixation rule, a 60 Hz notch, and independent flash-sink groupings on matched supported shanks. Cross-shank subtraction reduces slow phase consistency but preserves the main power response. These checks support the event-related signatures, while leaving their exact generators open.</p>
+<h2 id="6-what-this-first-comparison-establishes">6. What this first comparison establishes</h2>
+<div aria-label="Scrollable data table" class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Published observation</th>
+<th>What our data support so far</th>
+<th>What remains open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ahissar–Arieli: overlapping eye/cortical frequency ranges</td>
+<td>A concrete motivation for simultaneous measurement</td>
+<td>Frequency resemblance is not coupling or a demonstrated temporal code.</td>
+</tr>
+<tr>
+<td>Uran and colleagues: gamma varies with predictable image structure</td>
+<td>A literature-defined target for subsequent stimulus analysis</td>
+<td>We have not reproduced its predictability manipulation or quantified the same image feature here.</td>
+</tr>
+<tr>
+<td>Brunet and colleagues: image viewing produces gamma-range activity</td>
+<td>Broad image-related power increases in both animals; inspectable fast waveform structure</td>
+<td>A strong, sustained, isolated 50–80 Hz rhythm as the typical population phenotype is not established.</td>
+</tr>
+<tr>
+<td>Ito and colleagues: saccade-related power modulation</td>
+<td>A transient low-gamma/alpha–beta response in both animals</td>
+<td>Its earlier peak in our data and the contribution of sharp transients need explanation.</td>
+</tr>
+<tr>
+<td>Ito and colleagues: slow phase aligns across saccades</td>
+<td>Stronger slow-frequency than gamma-frequency phase consistency</td>
+<td>This is saccade alignment, not phase locking to high-frequency fixational eye motion.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The practical result is a usable neural starting point: reproducible event-related field structure is present, and its relationship to the literature is now explicit. The next installment can ask which individual intervals contain genuine repeated cycles and what their spatial profiles look like. Only then should those intervals be used to evaluate a gaze-dependent timing code or additional image information.</p>
+<h3 id="differences-that-remain-relevant">Differences that remain relevant</h3>
+<p>Our recordings use penetrating laminar probes in marmosets; Brunet used macaque surface electrodes, and Ito used capuchin tetrodes. Lateral subtraction between our shanks is closer to a surface-neighbor comparison than vertical bipolar subtraction, but it is not the same geometry. Our pre-image interval is not restricted to quiet fixation. Image timing uses the existing acquisition conversion and 8.3 ms display offset without a new photodiode calibration. These are explicit differences to investigate, not established explanations for the gamma discrepancy.</p>
+<h3 id="references-and-provenance">References and provenance</h3>
+<ol>
+<li>Ahissar E, Arieli A. <strong>Figuring Space by Time.</strong> <em>Neuron</em> 32:185–201 (2001). <a href="https://doi.org/10.1016/S0896-6273(01)00466-4">doi:10.1016/S0896-6273(01)00466-4</a>. Figure 5 from the supplied PDF.</li>
+<li>Uran C, Peter A, et al. <strong>Predictive coding of natural images by V1 firing rates and rhythmic synchronization.</strong> <em>Neuron</em> 110:1240–1257.e8 (2022). <a href="https://doi.org/10.1016/j.neuron.2022.01.002">doi:10.1016/j.neuron.2022.01.002</a>. Figure 2 from the supplied PDF. A published correction concerns Figure S5; the displayed figure is Figure 2.</li>
+<li>Brunet N, Bosman CA, et al. <strong>Visual Cortical Gamma-Band Activity During Free Viewing of Natural Images.</strong> <em>Cerebral Cortex</em> 25:918–926 (2015). <a href="https://doi.org/10.1093/cercor/bht280">doi:10.1093/cercor/bht280</a>. Supplied Figure 2.</li>
+<li>Ito J, Maldonado P, Grün S. <strong>Cross-frequency interaction of the eye-movement related LFP signals in V1 of freely viewing monkeys.</strong> <em>Frontiers in Systems Neuroscience</em> 7:1 (2013). <a href="https://doi.org/10.3389/fnsys.2013.00001">doi:10.3389/fnsys.2013.00001</a>. Supplied Figures 3 and 4.</li>
+</ol>
+<p>This installment reuses completed, audited analyses; it does not refit models or change cohort inclusion. The figure manifest records exact sources, selections, and visual review. <code>session_coverage.csv</code> and <code>depth_landmarks.csv</code> accompany the editable report. The cohort spectra use the completed 4,262-trial benchmark; the image-onset examples use its fixed-quality follow-up; the Ito maps use the completed 4,310-trial analysis. Their different denominators are intentional and should not be combined as if they were the same sample. All displayed LFP analyses are unnotched, and all captions refer to that same treatment.</p></main></div><footer>Working report · 28 September 2026 · Active Vision and Neural Computation Lab<br>Unlisted public page. Figures from other papers retain their source attribution. <a href="report.md">Editable report</a>.</footer><dialog aria-label="Enlarged scientific figure"><button autofocus>Close ×</button><img alt=""></dialog><script src="assets/report.js"></script></body></html>
