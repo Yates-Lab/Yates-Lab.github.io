@@ -15,7 +15,7 @@ is `https://yates-lab.github.io/notes/gamma-natural-viewing/`.
   methods, limitations, two example sessions, and the 30-session summaries.
 - `fixations/`: 12 saved fixations, six each from Allen_2022-04-13 and
   Logan_2020-01-07. Two contacts per session, recorded/shank-CAR/cross-shank
-  references, 64/128/256 ms windows, two or four DPSS tapers, spectra, band-RMS
+  references, 64/128/256 ms windows, two or four DPSS tapers, position/velocity eye spectra, band-RMS
   envelopes, and four selectable analytic-phase bands. Gaze, spikes, LFP,
   receptive-field crops and the image cursor share the same time axis.
 - `explore/`: all 30 good sessions (14 Allen, 16 Logan), each session and animal
@@ -80,6 +80,21 @@ window lengths with continuous context; no window is shortened to the fixation.
 Repeated eye spectra are shared between reference/contact choices. Numerical
 arrays are gzip-compressed, fetched on demand, and never include full continuous
 LFP files. Raw data paths and private server URLs are excluded.
+
+The **Eye spectrum** selector switches both the eye spectrogram and teal band
+curves between native position and finite-difference velocity. Velocity remains
+the default; `eye-spectrum=position` preserves the position choice in shared
+links. The two components are estimated independently, then their linear powers
+are added: `P_eye = P_horizontal + P_vertical`. Conversion to dB happens after
+addition. This preserves total power without signed cancellation, but does not
+retain direction. RMS is the square root of integrated combined band power,
+not an instantaneous Hilbert envelope. Position spectra use the recorded
+positions directly; they are not inferred from velocity spectra. Each window
+has its mean removed before tapering; no extra high-pass or linear detrend is
+applied. Position uses arcmin²/Hz and RMS arcmin; velocity uses (arcmin/s)²/Hz
+and RMS arcmin/s. Both use the same output time grid and complete native-clock
+windows. Position files are shared across all LFP references and contacts;
+`--stage eye-position` adds them without duplicating or recomputing LFP.
 
 ## Validation and interpretation
 

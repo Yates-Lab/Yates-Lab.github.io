@@ -52,6 +52,7 @@ for ref in cohort['references']:
             assert all(0<=v<=1 for row in p['ispc'] for v in row if numeric(v))
 
 selection=load(ROOT/'data/fixations/manifest.json.gz');clips=variants=0
+assert selection['eye_signals']==['velocity','position']
 for session in selection['sessions']:
     root=ROOT/'data/fixations'/session;m=load(root/'session.json.gz')
     assert len(m['fixations'])==6 and len(m['public_contacts'])==2
@@ -74,14 +75,22 @@ for session in selection['sessions']:
                 for window in selection['windows']:
                     for method in selection['methods']:
                         tf=load(prefix/f'tf-{window}-{method}.json.gz');eye=load(folder/f'eye-{window}-{method}.json.gz')
+                        position=load(folder/f'eye-position-{window}-{method}.json.gz')
+                        assert position['signal']=='position' and position['units']=='arcmin'
+                        assert position['time_ms']==tf['time_ms']
                         assert tf['window_ms']==window and tf['method']==method
                         assert increasing(tf['time_ms']) and tf['lfp']['valid_windows']>0
-                        for signal in [tf['lfp'],eye]:
+                        for signal in [tf['lfp'],eye,position]:
                             assert len(signal['power'])==len(tf['frequencies'])
                             assert all(len(row)==len(tf['time_ms']) for row in signal['power'])
                             assert sum(signal['valid'])==signal['valid_windows']
                             assert all(v is None or v>=0 for row in signal['power'] for v in row)
                             assert len(signal['band_power'])==len(signal['rms'])==3
+                            for power,rms in zip(signal['band_power'],signal['rms']):
+                                assert len(power)==len(rms)==len(tf['time_ms'])
+                                for p,r in zip(power,rms):
+                                    assert (p is None)==(r is None)
+                                    if p is not None:assert math.isclose(r*r,p,rel_tol=2e-6)
                 for band in selection['phase_bands']:
                     phase=load(prefix/f'phase-{band}.json.gz')
                     assert phase['band']==band and phase['time_ms']==t['t']
@@ -95,4 +104,4 @@ for f in ROOT.rglob('*.json.gz'):
     assert not any(s in text for s in ['/home/','/mnt/','192.168.','127.0.0.1','recording.dat']),f
 for f in json.loads((ROOT/'figure_manifest.json').read_text()):
     assert hashlib.sha256((ROOT/f['figure']).read_bytes()).hexdigest()==f['sha256']
-print(f'PASS: {len(pages)} pages, 30 sessions × 3 references, {clips} fixations, {variants} contact/reference clips; all spectral presets and phase bands.')
+print(f'PASS: {len(pages)} pages, 30 sessions × 3 references, {clips} fixations, {variants} contact/reference clips; position/velocity spectra, all spectral presets and phase bands.')

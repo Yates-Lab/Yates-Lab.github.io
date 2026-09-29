@@ -6,7 +6,7 @@ let M=null,C=null,S=null,ordinal=Number(query.get('fixation')||0),unit=Number(qu
 function status(s,error=false){$('status').textContent=s;$('status').classList.toggle('error',error)}
 function option(value,text){return new Option(text,value)}
 function opts(el,entries,value){el.replaceChildren(...entries.map(x=>option(x[0],x[1])));if(value!==undefined)el.value=value}
-const dataCache=new Map(),dataVersion='20260929-rf';
+const dataCache=new Map(),dataVersion='20260929-position';
 async function readData(path){
  if(!dataCache.has(path))dataCache.set(path,savedJSON('../data/'+path+'.json.gz?v='+dataVersion));
  try{return await dataCache.get(path)}catch(e){dataCache.delete(path);throw e}
@@ -18,8 +18,9 @@ async function api(path,p={}){
  if(path==='/api/rf')return (await readData(root+'/rf'))[p.unit]||{available:false,reason:'No saved map for this unit.'};
  if(path==='/api/clip'){
   const prefix=root+'/'+p.fixation+'/'+p.reference+'/'+p.contact;
-  const [common,trace,tf,eye,phase]=await Promise.all([readData(root+'/'+p.fixation+'/common'),readData(prefix+'/trace'),readData(prefix+'/tf-'+p['tf-window']+'-'+p['tf-method']),readData(root+'/'+p.fixation+'/eye-'+p['tf-window']+'-'+p['tf-method']),readData(prefix+'/phase-'+p['phase-band'])]);
-  return {...common,...trace,time_frequency:{...tf,eye},spike_phase:phase};
+  const eyeSignal=p['eye-spectrum']==='position'?'position':'velocity',eyeFile=eyeSignal==='position'?'eye-position-':'eye-';
+  const [common,trace,tf,eye,phase]=await Promise.all([readData(root+'/'+p.fixation+'/common'),readData(prefix+'/trace'),readData(prefix+'/tf-'+p['tf-window']+'-'+p['tf-method']),readData(root+'/'+p.fixation+'/'+eyeFile+p['tf-window']+'-'+p['tf-method']),readData(prefix+'/phase-'+p['phase-band'])]);
+  return {...common,...trace,time_frequency:{...tf,eye,eye_signal:eyeSignal},spike_phase:phase};
  }
  throw Error('This operation is not part of the public export.');
 }
