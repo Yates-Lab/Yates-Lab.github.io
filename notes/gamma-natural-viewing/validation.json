@@ -168,5 +168,12 @@
       }
     },
     "limits": "A display option, not a coupling test. Combined H+V power discards direction. Windows can include saccades; position windows have only their constant mean removed."
+  },
+  "position_only_correction": {
+    "date": "2026-09-29",
+    "behavior": "Eye spectra and band-power/RMS curves always load directly estimated position spectra. Old velocity links are normalized to position. The velocity-spectrum control is removed.",
+    "checks": "Static integrity passes. Chromium verifies both animals, no-query and explicit legacy velocity URLs, exact loaded position-file identity, arcmin/arcmin\u00b2 labels, finite eye/LFP windows, taper/window changes and fixation navigation. Zero JavaScript exceptions.",
+    "visual_review": "Rendered position spectra and all three band curves reviewed in both animals at 1480 \u00d7 1650 pixels.",
+    "calculation": "Existing validated native-position estimates, DPSS tapers, fixed windows and timing are unchanged."
   }
 }

@@ -1,5 +1,5 @@
 /* All fixation traces and spectra use one Plotly x-axis and one plotting box. */
-function tfSettings(){return {'tf-window':$('tf-window').value,'tf-method':$('tf-method').value,'tf-scale':$('tf-scale').value,'envelope-scale':$('envelope-scale').value,'eye-spectrum':$('eye-spectrum').value}}
+function tfSettings(){return {'tf-window':$('tf-window').value,'tf-method':$('tf-method').value,'tf-scale':$('tf-scale').value,'envelope-scale':$('envelope-scale').value,'eye-spectrum':'position'}}
 function tfDb(x){return finite(x)&&x>0?10*Math.log10(x):null}
 function stackDomains(){
  const enabled=phaseEnabled(),heights=enabled?[85,85,105,75,110,130,130,80,80,80]:[85,85,105,90,130,130,80,80,80],gap=24,total=heights.reduce((a,b)=>a+b,0)+gap*(heights.length-1);let top=1;
@@ -52,8 +52,8 @@ function addSpectralPanels(tr,ly){
 async function plotTF(){if(C)await plotClip()}
 async function plotEnvelopes(){if(C)await plotClip()}
 function initTF(){
- for(const id of ['tf-window','tf-method','tf-scale','envelope-scale','eye-spectrum']){
+ for(const id of ['tf-window','tf-method','tf-scale','envelope-scale']){
   const v=query.get(id);if(v&&[...$(id).options].some(o=>o.value===v))$(id).value=v;
-  $(id).onchange=()=>{save();if(['tf-window','tf-method','eye-spectrum'].includes(id))loadClip();else plotClip()};
+  $(id).onchange=()=>{save();if(['tf-window','tf-method'].includes(id))loadClip();else plotClip()};
  }
 }
