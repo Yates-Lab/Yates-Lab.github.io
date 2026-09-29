@@ -1,0 +1,544 @@
+[
+  {
+    "figure": "figures/ahissar_figure5.png",
+    "source": "PIIS0896627301004664.pdf",
+    "page": 7,
+    "crop_points": [
+      94,
+      76,
+      398,
+      317
+    ],
+    "sha256": "18b244dde8740706aa7aec409fd8fc8bbb51aec3a1b62799749b10710e3cbf72",
+    "note": "Figure panels extracted without changing plotted data; original caption replaced by attributed explanatory caption.",
+    "visually_inspected": true,
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/uran_figure2.png",
+    "source": "1-s2.0-S0896627322000022-mainext.pdf",
+    "page": 5,
+    "crop_points": [
+      83,
+      95,
+      516,
+      341
+    ],
+    "sha256": "f3a4c3bcedaddb50b7cd938d04b1ff049610ccdd49b44340927b67d7658d5d1e",
+    "note": "Figure panels extracted without changing plotted data; original caption replaced by attributed explanatory caption.",
+    "visually_inspected": true,
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/brunet_supplied.png",
+    "source": "outputs/figures/gamma_paper_counterparts/brunet_supplied.png",
+    "note": "Previously supplied paper figure; unchanged.",
+    "visually_inspected": true,
+    "sha256": "c350801a86f2f6cb982e789cae5bc992d9af90745225e0266e1418119c944b52",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/ito3_supplied.png",
+    "source": "outputs/figures/gamma_paper_counterparts/ito3_supplied.png",
+    "note": "Previously supplied paper figure; unchanged.",
+    "visually_inspected": true,
+    "sha256": "0a2e5f034db9ffa453da121f78d761b4742784781c6085360450daae8adce650",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/ito4_supplied.png",
+    "source": "outputs/figures/gamma_paper_counterparts/ito4_supplied.png",
+    "note": "Previously supplied paper figure; unchanged.",
+    "visually_inspected": true,
+    "sha256": "5f1667f64ce77f127b0b692797687ebdf10df8c95880b24d1dbe2fb84654eaaf",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/recording_overview.png",
+    "source": {
+      "selection": "Prior predetermined first quality-eligible trial, median superficial contact, each named session",
+      "examples": [
+        {
+          "session": "Allen_2022-04-13",
+          "trial": 164,
+          "contact": 30,
+          "good_units": 48,
+          "quality": {
+            "rail_bins": 0,
+            "flat_bins": 0,
+            "soft_only_bins": 0,
+            "edge_bins": 0,
+            "clipping_rule": "ADC rails assigned locally with100ms guard; native context outside that guard cannot reject the clip",
+            "reference_rule": "Fixed per-session contact list; no per-clip CAR membership changes"
+          }
+        },
+        {
+          "session": "Logan_2019-12-20",
+          "trial": 39,
+          "contact": 13,
+          "good_units": 12,
+          "quality": {
+            "rail_bins": 0,
+            "flat_bins": 0,
+            "soft_only_bins": 0,
+            "edge_bins": 0,
+            "clipping_rule": "ADC rails assigned locally with100ms guard; native context outside that guard cannot reject the clip",
+            "reference_rule": "Fixed per-session contact list; no per-clip CAR membership changes"
+          }
+        }
+      ]
+    },
+    "visually_inspected": true,
+    "sha256": "fcc11b45eacdb97e698a69f04b4f2b74c57672b9ab28f504cd4ce1d4ecaeace0",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/image_example_Allen_2022-04-13.png",
+    "source": {
+      "source": "outputs/stats/gamma_brunet_onset_counterpart/Allen_2022-04-13/examples.npz",
+      "example": {
+        "index": 0,
+        "group": 0,
+        "kind": "predetermined",
+        "trial": 164,
+        "contact": 30,
+        "partner": 62,
+        "image": "Waterfall.jpg",
+        "rank_score": null,
+        "saccade_peaks": [
+          0.13705737011150632,
+          0.2908569140399777,
+          0.5929298757409924,
+          0.631844742632893,
+          1.1841097400065337,
+          1.5844003075999353,
+          1.832725028576533,
+          2.025438247290367,
+          2.253410144071495,
+          2.4368833498801905,
+          2.6407155788328964,
+          2.9409367232156,
+          3.596974778442018,
+          3.8805038174550646,
+          4.141804134414997,
+          4.46797241760305,
+          4.840457114854871,
+          5.261148429301102,
+          5.292661987443353,
+          5.485408108280353,
+          5.709619626180029,
+          5.739281843843855,
+          5.970913505767385,
+          6.128434804345488,
+          6.439785687919539,
+          6.790026404161836,
+          7.242219117269087,
+          7.464596461017209,
+          7.842667604983035,
+          8.048354989153268,
+          8.367104558845313,
+          8.404158548411942,
+          8.593203657242157,
+          8.62841250528254,
+          9.267748441451658,
+          9.288142750931911,
+          9.536479869809227,
+          9.808934483344274
+        ],
+        "saccade_onsets": [
+          0.13335087441737414,
+          0.28715757098052563,
+          0.5892252874164114,
+          0.631844742632893,
+          1.1748404012960236,
+          1.5788484319582494,
+          1.8067993476752235,
+          2.0069193588269627,
+          2.249719384175478,
+          2.435032724665689,
+          2.6370078910340453,
+          2.931669053452424,
+          3.5580744552416945,
+          3.8749550412885583,
+          4.138099784510814,
+          4.449457582300056,
+          4.831194690358643,
+          5.261148429301102,
+          5.268571672800135,
+          5.477981288463525,
+          5.67442246077735,
+          5.739281843843855,
+          5.96352387965544,
+          6.124739752867754,
+          6.436093497496586,
+          6.7882005747514995,
+          7.238511667890634,
+          7.462745358960092,
+          7.811162391582002,
+          8.042794530348147,
+          8.363398301572488,
+          8.404158548411942,
+          8.589494062072845,
+          8.62654948216732,
+          9.267748441451658,
+          9.273306992887228,
+          9.530920841531952,
+          9.803349228735897
+        ],
+        "selection": "First quality-eligible trial; median available depth contact"
+      },
+      "reference_order": [
+        "recorded",
+        "shank_car",
+        "cross_shank"
+      ],
+      "line": 0
+    },
+    "visually_inspected": true,
+    "sha256": "47e6a9e46b63eb0bb099f05bcc4a427dbc5848a6e8b0c48bff20269b5cfe2f69",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/image_example_Logan_2019-12-20.png",
+    "source": {
+      "source": "outputs/stats/gamma_brunet_onset_counterpart/Logan_2019-12-20/examples.npz",
+      "example": {
+        "index": 0,
+        "group": 0,
+        "kind": "predetermined",
+        "trial": 39,
+        "contact": 13,
+        "partner": 45,
+        "image": "Hawaii_trees.JPG",
+        "rank_score": 1.9230516662107626,
+        "saccade_peaks": [
+          0.10621248164989083,
+          0.2623403259440238,
+          0.4094239909939006,
+          0.5470066663547186,
+          0.9619192968377774,
+          1.1607284001584048,
+          1.1867713639162503,
+          1.4305035783602307,
+          1.7962842904180434,
+          1.988106768849093,
+          2.0141890717109163,
+          3.1133958814191374,
+          3.3957681560129913,
+          3.6665029699361185,
+          3.9542747153834625,
+          4.26923359647094,
+          4.30540053827599,
+          4.505142335992332,
+          4.804449260439469,
+          5.0521966861094825,
+          5.330710629056284,
+          5.549897388305453,
+          5.5757429412863075,
+          5.599657778721394,
+          6.006955073905374,
+          6.028363652780399,
+          6.51321906459998,
+          6.847928798557177,
+          7.168858640392045,
+          7.454842244743304,
+          7.733267972729209,
+          7.9793216711532295,
+          8.333817782383221,
+          8.88379872342739,
+          9.28388027324263,
+          9.58984408936135,
+          9.634648467915895
+        ],
+        "saccade_onsets": [
+          0.10390935591840389,
+          0.2576449058451544,
+          0.3905745996553378,
+          0.5446413133129226,
+          0.9455036847400606,
+          1.1537298543280485,
+          1.179780209069122,
+          1.399413765173449,
+          1.7866066323883842,
+          1.9690549599383758,
+          2.0141890717109163,
+          3.111131379535209,
+          3.386221866749338,
+          3.6571836553821413,
+          3.9518774142209168,
+          4.2501462631571485,
+          4.303121731263445,
+          4.502835395559714,
+          4.792584825059066,
+          5.049859943325373,
+          5.323545428475654,
+          5.545229624788817,
+          5.571159816448244,
+          5.594729423442232,
+          6.0023791016315045,
+          6.018818317191744,
+          6.51321906459998,
+          6.840832977851278,
+          7.164201605721928,
+          7.447760490747214,
+          7.726408425066666,
+          7.9698702725770545,
+          8.331494867890115,
+          8.876627800795404,
+          9.262076157557203,
+          9.58282122481205,
+          9.632378720818224
+        ],
+        "selection": "First quality-eligible trial; median available depth contact"
+      },
+      "reference_order": [
+        "recorded",
+        "shank_car",
+        "cross_shank"
+      ],
+      "line": 0
+    },
+    "visually_inspected": true,
+    "sha256": "867c20f67f61428064bbe257fe95174e949a8dddb817852a750e5c4861de18e0",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/image_population.png",
+    "source": {
+      "source": "outputs/stats/gamma_paper_counterparts/brunet_session_spectra.csv",
+      "groups": [
+        {
+          "animal": "Allen",
+          "shank": 0,
+          "layer": "Superficial",
+          "sessions": 14,
+          "gamma_mean": 48.75476007095889
+        },
+        {
+          "animal": "Allen",
+          "shank": 0,
+          "layer": "Near input landmark",
+          "sessions": 14,
+          "gamma_mean": 33.02950848415049
+        },
+        {
+          "animal": "Allen",
+          "shank": 0,
+          "layer": "Deep",
+          "sessions": 14,
+          "gamma_mean": 49.04647620208278
+        },
+        {
+          "animal": "Allen",
+          "shank": 1,
+          "layer": "Superficial",
+          "sessions": 14,
+          "gamma_mean": 46.76805527336252
+        },
+        {
+          "animal": "Allen",
+          "shank": 1,
+          "layer": "Near input landmark",
+          "sessions": 14,
+          "gamma_mean": 29.682677115607614
+        },
+        {
+          "animal": "Allen",
+          "shank": 1,
+          "layer": "Deep",
+          "sessions": 14,
+          "gamma_mean": 46.24122946535795
+        },
+        {
+          "animal": "Logan",
+          "shank": 0,
+          "layer": "Superficial",
+          "sessions": 16,
+          "gamma_mean": 26.009230957976442
+        },
+        {
+          "animal": "Logan",
+          "shank": 0,
+          "layer": "Near input landmark",
+          "sessions": 16,
+          "gamma_mean": 18.902333616781398
+        },
+        {
+          "animal": "Logan",
+          "shank": 0,
+          "layer": "Deep",
+          "sessions": 16,
+          "gamma_mean": 26.225438463755218
+        },
+        {
+          "animal": "Logan",
+          "shank": 1,
+          "layer": "Superficial",
+          "sessions": 16,
+          "gamma_mean": 20.01748254192345
+        },
+        {
+          "animal": "Logan",
+          "shank": 1,
+          "layer": "Near input landmark",
+          "sessions": 16,
+          "gamma_mean": 19.849256832813342
+        },
+        {
+          "animal": "Logan",
+          "shank": 1,
+          "layer": "Deep",
+          "sessions": 15,
+          "gamma_mean": 26.123622173064415
+        }
+      ],
+      "y_range": [
+        -22.445409315238845,
+        265.9041776567579
+      ]
+    },
+    "visually_inspected": true,
+    "sha256": "a97962c65af141b938ce22da7aeafd063824337cc6b7a6f43486d2767edc4a39",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/saccades_Allen.png",
+    "source": {
+      "source": "outputs/stats/gamma_ito_counterpart",
+      "sessions": [
+        "Allen_2022-02-16",
+        "Allen_2022-02-18",
+        "Allen_2022-02-24",
+        "Allen_2022-03-02",
+        "Allen_2022-03-04",
+        "Allen_2022-03-30",
+        "Allen_2022-04-01",
+        "Allen_2022-04-06",
+        "Allen_2022-04-08",
+        "Allen_2022-04-13",
+        "Allen_2022-04-15",
+        "Allen_2022-06-01",
+        "Allen_2022-06-10",
+        "Allen_2022-08-05"
+      ],
+      "trials": 2385,
+      "saccades": 73756,
+      "reference": "shank_car",
+      "line": 0,
+      "selection": "inclusive",
+      "depth": "cached_all",
+      "color_limits": {
+        "power": [
+          -0.5,
+          0.5
+        ],
+        "ispc": [
+          0,
+          0.5
+        ]
+      }
+    },
+    "visually_inspected": true,
+    "sha256": "c45aaabb1cbdad8563f666e49965de16746dfd0a6608cce985eda0eaa20d92d6",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/saccades_Logan.png",
+    "source": {
+      "source": "outputs/stats/gamma_ito_counterpart",
+      "sessions": [
+        "Logan_2019-12-20",
+        "Logan_2019-12-23",
+        "Logan_2019-12-24",
+        "Logan_2019-12-26",
+        "Logan_2019-12-30",
+        "Logan_2019-12-31",
+        "Logan_2020-01-06",
+        "Logan_2020-01-07",
+        "Logan_2020-01-09",
+        "Logan_2020-01-10",
+        "Logan_2020-01-15",
+        "Logan_2020-02-28",
+        "Logan_2020-02-29",
+        "Logan_2020-03-02",
+        "Logan_2020-03-04",
+        "Logan_2020-03-06"
+      ],
+      "trials": 1925,
+      "saccades": 62041,
+      "reference": "shank_car",
+      "line": 0,
+      "selection": "inclusive",
+      "depth": "cached_all",
+      "color_limits": {
+        "power": [
+          -0.5,
+          0.5
+        ],
+        "ispc": [
+          0,
+          0.5
+        ]
+      }
+    },
+    "visually_inspected": true,
+    "sha256": "794befe66f245cc1cd24ff59d77593347d078a9178365dcaaa5b891563c94d3c",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/saccades_Allen_2022-04-13.png",
+    "source": {
+      "source": "outputs/stats/gamma_ito_counterpart",
+      "sessions": [
+        "Allen_2022-04-13"
+      ],
+      "trials": 192,
+      "saccades": 5974,
+      "reference": "shank_car",
+      "line": 0,
+      "selection": "inclusive",
+      "depth": "cached_all",
+      "color_limits": {
+        "power": [
+          -0.5,
+          0.5
+        ],
+        "ispc": [
+          0,
+          0.5
+        ]
+      }
+    },
+    "visually_inspected": true,
+    "sha256": "564a1d20122d8b9f82c26dfaf4739d46d423f4cc0a646b1aa1f105a95ef89370",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  },
+  {
+    "figure": "figures/saccades_Logan_2019-12-20.png",
+    "source": {
+      "source": "outputs/stats/gamma_ito_counterpart",
+      "sessions": [
+        "Logan_2019-12-20"
+      ],
+      "trials": 86,
+      "saccades": 2591,
+      "reference": "shank_car",
+      "line": 0,
+      "selection": "inclusive",
+      "depth": "cached_all",
+      "color_limits": {
+        "power": [
+          -0.5,
+          0.5
+        ],
+        "ispc": [
+          0,
+          0.5
+        ]
+      }
+    },
+    "visually_inspected": true,
+    "sha256": "627df2b5ab10682488cac359b17065cb4231fef56d6e9f2b7a37ddd0bcf2fa82",
+    "review_scope": "Final PNG and its placement in the 16-page PDF inspected; axes, units, time zero, color limits, missing data and caption checked. Browser-width checks additionally covered Figures 1, 3, 7 and 9."
+  }
+]

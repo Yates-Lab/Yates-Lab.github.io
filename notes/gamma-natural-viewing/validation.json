@@ -1,0 +1,77 @@
+{
+  "date": "2026-09-28",
+  "scope": "Public static report and interactive companions; scientific conclusions unchanged.",
+  "integrity": {
+    "pages": 3,
+    "sessions": 30,
+    "references": 3,
+    "fixations": 12,
+    "contact_reference_clips": 72,
+    "spectral_variants_per_clip": 6,
+    "phase_bands_per_clip": 4,
+    "checks": "Local links and anchors, noindex, timestamp/shape alignment, finite LFP and TF support, phase bounds, source figure hashes, absence of private paths."
+  },
+  "browser": {
+    "engine": "Chromium",
+    "desktop_pixels": [
+      1480,
+      1650
+    ],
+    "mobile_pixels": [
+      390,
+      844
+    ],
+    "javascript_exceptions": [],
+    "exercised": [
+      "All 12 saved fixations",
+      "Session/reference/contact changes",
+      "Window and taper changes",
+      "Phase band and unit selection",
+      "Synchronized image cursor and plot zoom",
+      "Power, phase consistency, and image spectra",
+      "Animal, individual session and paired-shank selections",
+      "Figure enlargement",
+      "Desktop and mobile layout"
+    ]
+  },
+  "visual_review": "Report figures and all 12 example views reviewed as rendered screenshots; detailed inspection of report opening, paper pairs, desktop fixation traces, three cohort measurements, and mobile layouts. Missing cohort axis labels were found and fixed. Missing RF maps remain explicitly labeled. No scientific values or waveform shapes were modified for appearance.",
+  "numerical_check": {
+    "description": "Fresh native-loader clips in both animals and session maps compared to exported arrays with rtol=6e-7, atol=6e-7 and equal missing-value masks. Differences are transport rounding to seven significant digits. Errors below are absolute in the displayed native units (time in ms, voltage in \u00b5V, eye velocity in arcmin/s, phase in radians).",
+    "max_absolute_errors": {
+      "Allen_2022-04-13": {
+        "t": 3.822678436904425e-06,
+        "field": 4.990234376123226e-05,
+        "fast": 4.999948110651076e-06,
+        "spike_t": 3.715601273768243e-05,
+        "eye_t": 4.976394751565749e-05,
+        "eye_xy": 4.962766979588196e-05,
+        "velocity_t": 4.990893566514387e-05,
+        "velocity": 0.0049222630532312905,
+        "tf_power": 4.980394853859593e-06,
+        "tf_band_power": 4.728872659143235e-05,
+        "tf_rms": 4.958102973517953e-06,
+        "phase_angle": 4.993889017868014e-07
+      },
+      "Logan_2019-12-20": {
+        "t": 9.666390496931854e-05,
+        "field": 4.982910155604259e-05,
+        "fast": 4.99717999602467e-06,
+        "spike_t": 0.00042999723336833995,
+        "eye_t": 0.0004988848615994357,
+        "eye_xy": 4.988228054969568e-05,
+        "velocity_t": 0.0004940940484630119,
+        "velocity": 0.004435753071447834,
+        "tf_power": 4.947147223788306e-05,
+        "tf_band_power": 4.996953091307432e-06,
+        "tf_rms": 4.998279345969081e-07,
+        "phase_angle": 4.999578342435029e-07
+      }
+    }
+  },
+  "limits": [
+    "Saved clips are a duration-stratified illustrative subset, not prevalence estimates.",
+    "Common-contact phase colors are descriptive, not phase-locking tests.",
+    "Public presentation checks do not constitute new biological validation.",
+    "Publication on GitHub Pages occurs when the branch is merged into its configured main source."
+  ]
+}
