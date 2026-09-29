@@ -55,9 +55,12 @@ selection=load(ROOT/'data/fixations/manifest.json.gz');clips=variants=0
 for session in selection['sessions']:
     root=ROOT/'data/fixations'/session;m=load(root/'session.json.gz')
     assert len(m['fixations'])==6 and len(m['public_contacts'])==2
+    assert m['default_contact'] in m['public_contacts']
+    assert load(root/'rf.json.gz')[str(m['default_unit'])]['available'],session
     for f in m['fixations']:
         folder=root/str(f['ordinal']);c=load(folder/'common.json.gz');clips+=1
         assert c['session']==session and c['fixation']['ordinal']==f['ordinal']
+        assert 'cloud' not in c['image']['filename'].casefold(),c['image']['filename']
         assert increasing(c['eye_t']) and increasing(c['velocity_t'])
         assert len(c['spike_t'])==len(c['spike_units'])
         assert len(c['crop']['t'])==len(c['crop']['roi'])==len(c['crop']['valid'])
