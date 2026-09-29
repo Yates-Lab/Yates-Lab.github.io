@@ -6,9 +6,9 @@ let M=null,C=null,S=null,ordinal=Number(query.get('fixation')||0),unit=Number(qu
 function status(s,error=false){$('status').textContent=s;$('status').classList.toggle('error',error)}
 function option(value,text){return new Option(text,value)}
 function opts(el,entries,value){el.replaceChildren(...entries.map(x=>option(x[0],x[1])));if(value!==undefined)el.value=value}
-const dataCache=new Map();
+const dataCache=new Map(),dataVersion='20260929-rf';
 async function readData(path){
- if(!dataCache.has(path))dataCache.set(path,savedJSON('../data/'+path+'.json.gz'));
+ if(!dataCache.has(path))dataCache.set(path,savedJSON('../data/'+path+'.json.gz?v='+dataVersion));
  try{return await dataCache.get(path)}catch(e){dataCache.delete(path);throw e}
 }
 async function api(path,p={}){
@@ -46,12 +46,12 @@ function contactOptions(wanted){
 }
 function showContactNotice(){const issue=C?.session===M?.session&&C?.channel===contact?C.quality.selected_unavailable_reason:'';const note=[contactNotice,issue].filter(Boolean).join(' ');$('contact-note').textContent=note;$('contact-note').classList.toggle('hidden',!note)}
 function selectedUnit(){return M?.units.find(u=>u.id===unit)}
-async function loadSession(){
+async function loadSession(useURL=false){
  const ticket=++request;stopPlay();clearTimeout(statsTimer);M=null;C=null;S=null;status('Loading saved session examples…');
- try{const m=await api('/api/session',{session:$('session').value});if(ticket!==request)return;M=m;if(!query.has('unit')||!m.units.some(u=>u.id===unit))unit=m.default_unit;ordinal=Math.max(0,Math.min(ordinal,m.fixations.length-1));
+ try{const m=await api('/api/session',{session:$('session').value});if(ticket!==request)return;M=m;if(!useURL||!query.has('unit')||!m.units.some(u=>u.id===unit))unit=m.default_unit;ordinal=Math.max(0,Math.min(ordinal,m.fixations.length-1));
  opts($('unit'),m.units.slice().sort((a,b)=>a.shank-b.shank||a.depth-b.depth||a.id-b.id).map(u=>[u.id,`Unit ${u.id} · ${u.label} · shank ${u.shank+1} · ch ${u.channel}`]),unit);
  if(!$('unit').value){unit=m.units.find(u=>u.label==='good')?.id??m.units[0].id;$('unit').value=unit}
- contactOptions(contact);
+ contactOptions(useURL&&query.has('contact')?contact:(m.default_contact??m.public_contacts[0]));
  const trials=[...new Set(m.fixations.map(f=>f.trial))];opts($('trial'),trials.map(t=>[t,`Trial ${t}`]));
  await loadClip();loadRF();
  }catch(e){status(e.message,true)}
@@ -63,7 +63,7 @@ async function loadClip(){if(!M)return;if(!availableContacts().includes(contact)
  $('clip-description').textContent=`${M.session} · saved example ${ordinal+1} of ${M.fixations.length.toLocaleString()} · ${c.image.filename}`;
  $('patch-description').textContent=`${c.crop.width} × ${c.crop.height} pixels · ${c.crop.side_degrees.toFixed(2)}° wide. This region covers the mapped RF population.`;
  $('scene').parentElement.style.aspectRatio=(c.screen[2]-c.screen[0])+'/'+(c.screen[3]-c.screen[1]);
- sceneImage=new Image();sprite=new Image();await Promise.all([new Promise((resolve,reject)=>{sceneImage.onload=resolve;sceneImage.onerror=()=>reject(Error('Image unavailable'));sceneImage.src='../data/fixations/'+M.session+'/'+ordinal+'/image.png'}),new Promise((resolve,reject)=>{sprite.onload=resolve;sprite.onerror=()=>reject(Error('Saved image crops unavailable'));sprite.src=c.crop.sprite})]);if(ticket!==request)return;
+ sceneImage=new Image();sprite=new Image();await Promise.all([new Promise((resolve,reject)=>{sceneImage.onload=resolve;sceneImage.onerror=()=>reject(Error('Image unavailable'));sceneImage.src='../data/fixations/'+M.session+'/'+ordinal+'/image.png?v='+dataVersion}),new Promise((resolve,reject)=>{sprite.onload=resolve;sprite.onerror=()=>reject(Error('Saved image crops unavailable'));sprite.src=c.crop.sprite+'?v='+dataVersion})]);if(ticket!==request)return;
  $('cursor').min=0;$('cursor').max=Math.max(0,c.crop.t.length-1);$('cursor').value=c.crop.t.reduce((best,t,i)=>Math.abs(t-c.fixation.duration*500)<Math.abs(c.crop.t[best]-c.fixation.duration*500)?i:best,0);
  await plotClip();if(ticket!==request)return;drawFrame(Number($('cursor').value));status(`${M.fixations.length} saved examples from ${M.total_fixations.toLocaleString()} image fixations · ${M.units.length} sorted units · ${Math.round(M.eye.native_median_hz)} Hz native eye tracking. Use the arrows to browse.`);
  }catch(e){if(ticket===request)status(e.message,true)}
@@ -106,7 +106,7 @@ async function plotClip(){const c=C, traces=[],pos=c.eye_xy.map(a=>{const inside
  ly.annotations=[{xref:'paper',yref:'paper',x:1,y:1.035,xanchor:'right',text:$('eye-scale').value==='fixation'?'Scale shows fixation detail; large context saccades are clipped.':'Position relative to fixation median; velocity unsmoothed.',showarrow:false,font:{size:11,color:'#526876'}}];
  addSpectralPanels(traces,ly);addPhasePanel(traces,ly);ly.shapes=unifiedShapes(c.crop.t[Number($('cursor').value)]||0);await Plotly.react('traces',traces,ly,config);
  $('traces').removeAllListeners('plotly_hover');$('traces').on('plotly_hover',event=>{let ms=event.points[0].x;if(c.crop.t.length){let best=c.crop.t.reduce((b,v,i)=>Math.abs(v-ms)<Math.abs(c.crop.t[b]-ms)?i:b,0);drawFrame(best)}});
- $('trace-note').textContent=`${$('reference').selectedOptions[0].text}. ${phaseEnabled()?`HSV ticks: LFP phase; taller ticks: unit ${unit}.`:`Orange ticks: selected unit ${unit}; gray ticks: other units from both shanks.`} Selected LFP contact ${contact}: ${c.quality.selected_accepted_samples.toLocaleString()} of ${c.quality.selected_total_samples.toLocaleString()} samples accepted; rejected samples appear as gaps. No time shift has been applied.`;
+ $('trace-note').textContent=`${$('reference').selectedOptions[0].text}. ${M.spike_source==='osp'?'Original Logan spike sorting (OSP), matching the RF archive.':'Kilosort 4 spike sorting.'} ${phaseEnabled()?`HSV ticks: LFP phase; taller ticks: unit ${unit}.`:`Orange ticks: selected unit ${unit}; gray ticks: other units from both shanks.`} Selected LFP contact ${contact}: ${c.quality.selected_accepted_samples.toLocaleString()} of ${c.quality.selected_total_samples.toLocaleString()} samples accepted; rejected samples appear as gaps. No time shift has been applied.`;
 }
 function stopPlay(){clearInterval(playTimer);playTimer=null;$('play').textContent='▶ Play slowly'}
 $('session').onchange=()=>{ordinal=0;loadSession()};
@@ -121,4 +121,4 @@ $('cursor').oninput=()=>{stopPlay();drawFrame(Number($('cursor').value))};$('pla
 document.addEventListener('keydown',e=>{if(tab!=='browse'||!M||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowRight')$('next').click();if(e.key==='ArrowLeft')$('prev').click()});
 initTF();
 initPhase();
-(async()=>{try{let r=await api('/api/sessions');opts($('session'),r.sessions.map(s=>[s,s]),query.get('session')||'Allen_2022-04-13');$('reference').value=['shank_car','recorded','cross_shank'].includes(query.get('reference'))?query.get('reference'):'shank_car';$('context').value='200';await loadSession();}catch(e){status(e.message,true)}})();
+(async()=>{try{let r=await api('/api/sessions');const requested=query.get('session'),chosen=r.sessions.includes(requested)?requested:requested?.startsWith('Logan_')?r.sessions.find(s=>s.startsWith('Logan_')):r.sessions[0];opts($('session'),r.sessions.map(s=>[s,s]),chosen);$('reference').value=['shank_car','recorded','cross_shank'].includes(query.get('reference'))?query.get('reference'):'shank_car';$('context').value='200';await loadSession(!requested||chosen===requested);}catch(e){status(e.message,true)}})();

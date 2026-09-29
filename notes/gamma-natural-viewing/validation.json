@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-28",
+  "date": "2026-09-29",
   "scope": "Public static report and interactive companions; scientific conclusions unchanged.",
   "integrity": {
     "pages": 3,
@@ -31,7 +31,9 @@
       "Power, phase consistency, and image spectra",
       "Animal, individual session and paired-shank selections",
       "Figure enlargement",
-      "Desktop and mobile layout"
+      "Desktop and mobile layout",
+      "Correct session-specific default RF and LFP contact",
+      "Saved links to removed Logan session migrate to new Logan session"
     ]
   },
   "visual_review": "Report figures and all 12 example views reviewed as rendered screenshots; detailed inspection of report opening, paper pairs, desktop fixation traces, three cohort measurements, and mobile layouts. Missing cohort axis labels were found and fixed. Missing RF maps remain explicitly labeled. No scientific values or waveform shapes were modified for appearance.",
@@ -39,32 +41,32 @@
     "description": "Fresh native-loader clips in both animals and session maps compared to exported arrays with rtol=6e-7, atol=6e-7 and equal missing-value masks. Differences are transport rounding to seven significant digits. Errors below are absolute in the displayed native units (time in ms, voltage in \u00b5V, eye velocity in arcmin/s, phase in radians).",
     "max_absolute_errors": {
       "Allen_2022-04-13": {
-        "t": 3.822678436904425e-06,
-        "field": 4.990234376123226e-05,
-        "fast": 4.999948110651076e-06,
-        "spike_t": 3.715601273768243e-05,
-        "eye_t": 4.976394751565749e-05,
-        "eye_xy": 4.962766979588196e-05,
-        "velocity_t": 4.990893566514387e-05,
-        "velocity": 0.0049222630532312905,
-        "tf_power": 4.980394853859593e-06,
-        "tf_band_power": 4.728872659143235e-05,
-        "tf_rms": 4.958102973517953e-06,
-        "phase_angle": 4.993889017868014e-07
+        "t": 0.000296574873004829,
+        "field": 4.978027344293423e-05,
+        "fast": 4.9991138428850945e-06,
+        "spike_t": 3.6759727322532854e-05,
+        "eye_t": 4.998217991669662e-05,
+        "eye_xy": 4.988525358839979e-05,
+        "velocity_t": 4.987325317529212e-05,
+        "velocity": 0.004938256453897338,
+        "tf_power": 4.996669087375949e-06,
+        "tf_band_power": 4.899661638546604e-05,
+        "tf_rms": 4.773263214019607e-06,
+        "phase_angle": 4.993490172466863e-07
       },
-      "Logan_2019-12-20": {
-        "t": 9.666390496931854e-05,
-        "field": 4.982910155604259e-05,
-        "fast": 4.99717999602467e-06,
-        "spike_t": 0.00042999723336833995,
-        "eye_t": 0.0004988848615994357,
-        "eye_xy": 4.988228054969568e-05,
-        "velocity_t": 0.0004940940484630119,
-        "velocity": 0.004435753071447834,
-        "tf_power": 4.947147223788306e-05,
-        "tf_band_power": 4.996953091307432e-06,
-        "tf_rms": 4.998279345969081e-07,
-        "phase_angle": 4.999578342435029e-07
+      "Logan_2020-01-07": {
+        "t": 3.232179938095214e-05,
+        "field": 4.44335937430651e-05,
+        "fast": 4.998617058049604e-06,
+        "spike_t": 0.00036565513050845766,
+        "eye_t": 0.0004982804771316296,
+        "eye_xy": 4.977350297963312e-05,
+        "velocity_t": 0.0004951696686248397,
+        "velocity": 0.004274317872841493,
+        "tf_power": 4.9988503931786e-06,
+        "tf_band_power": 4.904811497397077e-05,
+        "tf_rms": 4.971801310205137e-06,
+        "phase_angle": 4.998550542367752e-07
       }
     }
   },
@@ -73,5 +75,37 @@
     "Common-contact phase colors are descriptive, not phase-locking tests.",
     "Public presentation checks do not constitute new biological validation.",
     "Publication on GitHub Pages occurs when the branch is merged into its configured main source."
-  ]
+  ],
+  "fixation_update": {
+    "date": "2026-09-29",
+    "sessions": [
+      "Allen_2022-04-13",
+      "Logan_2020-01-07"
+    ],
+    "cloud_image_trials_excluded": true,
+    "spike_sources": {
+      "Allen_2022-04-13": "Kilosort 4",
+      "Logan_2020-01-07": "original OSP sorting, matching the RF archive"
+    },
+    "default_logan_unit": 75,
+    "default_logan_contact": 49,
+    "rf_identity": {
+      "session": "Logan_2020-01-07",
+      "one_second_windows": 720,
+      "units": 107,
+      "same_unit_best_match_count": 107,
+      "default_unit_75_correlation": 0.9996883958618935,
+      "default_unit_75_best_match": 75,
+      "median_same_unit_correlation": 0.9999999999999997
+    },
+    "original_spike_time_max_difference_s": 0.0,
+    "raw_spike_waveform_check": {
+      "sampled_spikes": 301,
+      "expected_peak_contact": 49,
+      "observed_peak_contact": 49
+    },
+    "browser_checks": "All 12 examples, RF loading, reference/contact/taper/phase controls, session defaults even with old URL parameters, and migration from the removed Logan session; no JavaScript exceptions.",
+    "visual_review": "Reviewed all six new Logan plots and the replacement Allen plot at desktop display size, including scene and RF panels, traces, spikes, spectra and envelopes. Original unchanged Allen examples retain their prior review.",
+    "limitations": "RF clarity is illustrative and does not establish single-unit isolation. Original OSP quality labels marked unsorted are retained. The 30-session LFP summaries and written report examples are unchanged."
+  }
 }
