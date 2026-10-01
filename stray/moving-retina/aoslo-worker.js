@@ -1,0 +1,2 @@
+importScripts('aoslo-model.js?v=3');
+onmessage=async event=>{try{const result=await AOSLOModel.simulate(event.data,(percent,label)=>postMessage({type:'progress',percent,label}));const transfer=[result.input,result.M,result.P,result.bgM,result.bgP,result.hM,result.hP,result.gate,result.motion.eyeX,result.motion.eyeY,result.motion.x,result.motion.y].map(a=>a.buffer);postMessage({type:'result',result},transfer);}catch(error){postMessage({type:'error',message:error.message});}};
