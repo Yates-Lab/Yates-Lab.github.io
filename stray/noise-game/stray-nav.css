@@ -1,0 +1,6 @@
+.game-brand { display: flex; align-items: center; gap: 24px; }
+.stray-link { font-size: 12px; color: #aaa; text-decoration: none; white-space: nowrap; }
+.stray-link:hover { color: white; }
+.stray-link:focus-visible, .wordmark:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+@media (max-width: 1000px) { .wordmark span { display: none; } }
+@media (max-width: 520px) { .game-brand { gap: 12px; } .wordmark { font-size: 12px; } #fps { display: none; } .options { gap: 8px; } }
