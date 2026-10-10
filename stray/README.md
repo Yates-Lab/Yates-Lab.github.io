@@ -3,6 +3,7 @@
 Unlisted web demos for students and lab discussion:
 
 - `/stray/`: collection index.
+- `/stray/laminar-browser/`: fixed coupling snapshot with observed RFs, saccade responses, probe waveforms, and CCGs. The page records the snapshot date; it is not a live training dashboard. Data are precomputed static assets with no backend.
 - `/stray/moving-retina/`: AOSLO stimulus and M/P response movies.
 - `/stray/moving-retina/primer.html`: the five-lesson concept primer.
 - The LFP entry links to the existing `/notes/gamma-natural-viewing/` pages so their URLs and data remain unchanged.
